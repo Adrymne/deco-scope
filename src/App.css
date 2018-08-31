@@ -1,0 +1,15 @@
+.app {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.melds {
+  padding: 5px 0;
+  overflow: auto;
+}
+
+.snipe-controls {
+  padding: 5px 0;
+}
