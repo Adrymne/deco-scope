@@ -5,7 +5,8 @@ import './App.css';
 
 import ModeToggle from './app/ModeToggle';
 import Melds from './app/Melds';
-import SnipeControls from './app/SnipeControls';
+// import SnipeControls from './app/SnipeControls';
+import RecordControls from './app/RecordControls';
 
 const DUMMY_MELDS = [
   ['Antipara', 'Fortitude', 'Antipara'],
@@ -33,7 +34,7 @@ class App extends React.Component {
           <Melds melds={DUMMY_MELDS} />
         </div>
         <div className="snipe-controls">
-          <SnipeControls />
+          <RecordControls />
         </div>
       </Container>
     );
