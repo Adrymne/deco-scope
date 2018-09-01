@@ -5,6 +5,7 @@ import './App.css';
 
 import ModeToggle from './app/ModeToggle';
 import Melds from './app/Melds';
+import QuestCounter from './app/QuestCounter';
 // import SnipeControls from './app/SnipeControls';
 import RecordControls from './app/RecordControls';
 
@@ -30,10 +31,13 @@ class App extends React.Component {
         <div className="mode-toggle">
           <ModeToggle />
         </div>
+        <div className="quest-counter">
+          <QuestCounter />
+        </div>
         <div className="melds">
           <Melds melds={DUMMY_MELDS} />
         </div>
-        <div className="snipe-controls">
+        <div className="controls">
           <RecordControls />
         </div>
       </Container>
