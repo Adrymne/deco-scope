@@ -5,8 +5,8 @@
 }
 
 .snipe-controls__step {
-  border: 1px solid black;
   width: 100%;
   text-align: center;
   margin: 0px 2.5px;
+  border-radius: 0;
 }

@@ -14,7 +14,7 @@ type Meld = Deco Deco Deco
 type State = {
   ui :: Mode,
   melds :: {
-    questCounter :: CounterState
+    counterState :: CounterState
     meldList :: [Meld]
   }
 }
@@ -23,3 +23,5 @@ type State = {
 export const uiMode = state => state.ui;
 
 export const melds = state => state.melds.meldList;
+
+export const counterState = state => state.melds.counterState;

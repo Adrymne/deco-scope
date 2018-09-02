@@ -1,9 +1,10 @@
 import * as R from 'ramda';
 import * as actions from 'store/actions';
+import { QuestCounter } from 'types';
 
 const DEFAULT = {
   // quests advance the meld list in a 1-1-2 pattern
-  counterState: 1,
+  counterState: QuestCounter.init(),
   meldList: []
 };
 const EMPTY_MELD = [undefined, undefined, undefined];
@@ -17,10 +18,9 @@ export default (state = DEFAULT, action) => {
     case actions.DO_QUEST:
       return R.evolve(
         {
-          counterState: counterState =>
-            counterState + 1 > 3 ? 1 : counterState + 1,
+          counterState: QuestCounter.advance,
           meldList: meldList =>
-            R.drop(state.counterState === 3 ? 2 : 1, meldList)
+            R.drop(QuestCounter.getMeldAdvance(state.counterState), meldList)
         },
         state
       );
