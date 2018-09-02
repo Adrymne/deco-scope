@@ -19,3 +19,5 @@ type State = {
   }
 }
 */
+
+export const uiMode = state => state.ui;

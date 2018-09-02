@@ -1,7 +1,6 @@
 import * as actions from 'store/actions';
+import { SNIPE_MODE, RECORD_MODE } from 'types';
 
-const SNIPE_MODE = 'SNIPE';
-const RECORD_MODE = 'RECORD';
 const DEFAULT = SNIPE_MODE;
 
 export default (state = DEFAULT, action) => {
