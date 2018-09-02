@@ -21,3 +21,5 @@ type State = {
 */
 
 export const uiMode = state => state.ui;
+
+export const melds = state => state.melds.meldList;

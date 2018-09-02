@@ -6,6 +6,7 @@ const DEFAULT = {
   counterState: 1,
   meldList: []
 };
+const EMPTY_MELD = [undefined, undefined, undefined];
 
 const updateDeco = ({ decoIndex, decoId }) => R.update(decoIndex, decoId);
 
@@ -24,7 +25,7 @@ export default (state = DEFAULT, action) => {
         state
       );
     case actions.ADD_MELD:
-      return R.evolve({ meldList: R.append([]) }, state);
+      return R.evolve({ meldList: R.append(EMPTY_MELD) }, state);
     case actions.DELETE_MELD:
       return R.evolve({ meldList: R.init }, state);
     case actions.SET_DECO:

@@ -11,6 +11,7 @@
 }
 
 .melds {
+  height: 100%;
   padding: 2.5px 0;
   overflow: auto;
 }

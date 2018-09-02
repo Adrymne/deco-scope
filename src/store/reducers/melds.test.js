@@ -96,7 +96,7 @@ it('ADD_MELD', () => {
 
   const result = subject(state, action);
 
-  expect(result.meldList).toEqual([1, 2, 3, []]);
+  expect(result.meldList).toEqual([1, 2, 3, [undefined, undefined, undefined]]);
 });
 
 describe('DELETE_MELD', () => {

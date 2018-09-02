@@ -13,21 +13,6 @@ import QuestCounter from './app/QuestCounter';
 import SnipeControls from './app/SnipeControls';
 import RecordControls from './app/RecordControls';
 
-const DUMMY_MELDS = [
-  ['Antipara', 'Fortitude', 'Antipara'],
-  ['Attack Boost', 'Tenderizer', 'Artillery'],
-  ['Antipara', 'Fortitude', 'Antipara'],
-  ['Attack Boost', 'Tenderizer', 'Artillery'],
-  ['Antipara', 'Fortitude', 'Antipara'],
-  ['Attack Boost', 'Tenderizer', 'Artillery'],
-  ['Antipara', 'Fortitude', 'Antipara'],
-  ['Attack Boost', 'Tenderizer', 'Artillery'],
-  ['Antipara', 'Fortitude', 'Antipara'],
-  ['Attack Boost', 'Tenderizer', 'Artillery'],
-  ['Antipara', 'Fortitude', 'Antipara'],
-  ['Attack Boost', 'Tenderizer', 'Artillery']
-];
-
 const modeControls = uiMode => {
   switch (uiMode) {
     case SNIPE_MODE:
@@ -39,7 +24,7 @@ const modeControls = uiMode => {
   }
 };
 
-const App = ({ uiMode }) => (
+const App = ({ uiMode, melds }) => (
   <Container fluid className="app">
     <div className="mode-toggle">
       <ModeToggle />
@@ -48,7 +33,7 @@ const App = ({ uiMode }) => (
       <QuestCounter />
     </div>
     <div className="melds">
-      <Melds melds={DUMMY_MELDS} />
+      <Melds />
     </div>
     <div className="controls">{modeControls(uiMode)}</div>
   </Container>
