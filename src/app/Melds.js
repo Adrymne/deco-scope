@@ -16,8 +16,8 @@ const renderDecos = decos =>
 const Melds = ({ melds }) => (
   <Table bordered className="melds__table">
     <tbody>
-      {melds.map((decos, index) => (
-        <tr key={index}>{renderDecos(decos)}</tr>
+      {melds.map(meld => (
+        <tr key={meld.id}>{renderDecos(meld.decos)}</tr>
       ))}
     </tbody>
   </Table>

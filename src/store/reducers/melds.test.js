@@ -1,134 +1,129 @@
+import * as R from 'ramda';
 import subject from './melds';
 import * as actions from 'store/actions';
 
 describe('DO_MELD', () => {
   it('empty meld list', () => {
-    const state = { meldList: [] };
+    const state = { byId: {}, list: [] };
     const action = actions.doMeld();
 
     const result = subject(state, action);
 
-    expect(result).toEqual({ meldList: [] });
+    expect(result).toEqual(state);
   });
 
   it('melds in queue', () => {
-    const state = { meldList: [1, 2, 3] };
+    const state = {
+      byId: { 1: 'meld 1', 2: 'meld 2' },
+      list: [1, 2]
+    };
     const action = actions.doMeld();
 
     const result = subject(state, action);
 
-    expect(result).toEqual({ meldList: [2, 3] });
+    expect(result).toEqual({
+      byId: { 2: 'meld 2' },
+      list: [2]
+    });
   });
 });
 
 describe('DO_QUEST', () => {
-  describe('counterState', () => {
-    it('state 1', () => {
-      const state = { counterState: 0 };
-      const action = actions.doQuest();
+  const INITIAL_STATE = {
+    byId: { 1: 'meld 1', 2: 'meld 2', 3: 'meld 3' },
+    list: [1, 2, 3]
+  };
 
-      const result = subject(state, action);
-
-      expect(result.counterState).toBe(1);
-    });
-
-    it('state 2', () => {
-      const state = { counterState: 1 };
-      const action = actions.doQuest();
-
-      const result = subject(state, action);
-
-      expect(result.counterState).toBe(2);
-    });
-
-    it('state 3', () => {
-      const state = { counterState: 2 };
-      const action = actions.doQuest();
-
-      const result = subject(state, action);
-
-      expect(result.counterState).toBe(0);
-    });
-  });
-
-  describe('meldList', () => {
-    it('empty meld list', () => {
-      const state = { meldList: [], counterState: 0 };
-      const action = actions.doQuest();
-
-      const result = subject(state, action);
-
-      expect(result.meldList).toEqual([]);
-    });
-
-    it('state 1', () => {
-      const state = { meldList: [1, 2, 3], counterState: 0 };
-      const action = actions.doQuest();
-
-      const result = subject(state, action);
-
-      expect(result.meldList).toEqual([2, 3]);
-    });
-
-    it('state 2', () => {
-      const state = { meldList: [1, 2, 3], counterState: 1 };
-      const action = actions.doQuest();
-
-      const result = subject(state, action);
-
-      expect(result.meldList).toEqual([2, 3]);
-    });
-
-    it('state 3', () => {
-      const state = { meldList: [1, 2, 3], counterState: 2 };
-      const action = actions.doQuest();
-
-      const result = subject(state, action);
-
-      expect(result.meldList).toEqual([3]);
-    });
-  });
-});
-
-it('ADD_MELD', () => {
-  const state = { meldList: [1, 2, 3] };
-  const action = actions.addMeld();
-
-  const result = subject(state, action);
-
-  expect(result.meldList).toEqual([1, 2, 3, [undefined, undefined, undefined]]);
-});
-
-describe('DELETE_MELD', () => {
-  it('empty list', () => {
-    const state = { meldList: [] };
-    const action = actions.deleteMeld();
-
-    const result = subject(state, action);
-
-    expect(result.meldList).toEqual([]);
-  });
-
-  it('non-empty list', () => {
-    const state = { counterState: 1, meldList: [1, 2, 3] };
-    const action = actions.deleteMeld();
+  it('state 0', () => {
+    const state = R.assoc('counterState', 0, INITIAL_STATE);
+    const action = actions.doQuest();
 
     const result = subject(state, action);
 
     expect(result).toEqual({
       counterState: 1,
-      meldList: [1, 2]
+      byId: { 2: 'meld 2', 3: 'meld 3' },
+      list: [2, 3]
+    });
+  });
+
+  it('state 1', () => {
+    const state = R.assoc('counterState', 1, INITIAL_STATE);
+    const action = actions.doQuest();
+
+    const result = subject(state, action);
+
+    expect(result).toEqual({
+      counterState: 2,
+      byId: { 2: 'meld 2', 3: 'meld 3' },
+      list: [2, 3]
+    });
+  });
+
+  it('state 2', () => {
+    const state = R.assoc('counterState', 2, INITIAL_STATE);
+    const action = actions.doQuest();
+
+    const result = subject(state, action);
+
+    expect(result).toEqual({
+      counterState: 0,
+      byId: { 3: 'meld 3' },
+      list: [3]
+    });
+  });
+});
+
+it('ADD_MELD', () => {
+  const state = {
+    byId: { 1: 'meld 1', 2: 'meld 2' },
+    list: [1, 2]
+  };
+  const action = actions.addMeld();
+
+  const result = subject(state, action);
+
+  expect(result.list).toHaveLength(3);
+  const newId = result.list[2];
+  expect(typeof newId).toBe('string');
+  expect(result.byId[newId]).toEqual([undefined, undefined, undefined]);
+});
+
+describe('DELETE_LAST_MELD', () => {
+  it('empty list', () => {
+    const state = { byId: {}, list: [] };
+    const action = actions.deleteLastMeld();
+
+    const result = subject(state, action);
+
+    expect(result).toEqual({ byId: {}, list: [] });
+  });
+
+  it('non-empty list', () => {
+    const state = {
+      byId: { 1: 'meld 1', 2: 'meld 3' },
+      list: [1, 2]
+    };
+    const action = actions.deleteLastMeld();
+
+    const result = subject(state, action);
+
+    expect(result).toEqual({
+      byId: { 1: 'meld 1' },
+      list: [1]
     });
   });
 });
 
 it('SET_DECO', () => {
-  const state = { meldList: [1, ['a', 'b', 'c'], 3] };
-  const action = actions.setDeco(1, 2, 'id');
+  const state = { byId: { meldId: [undefined, undefined, undefined] } };
+  const action = actions.setDeco('meldId', 1, 'deco name');
 
   const result = subject(state, action);
 
-  expect(result).toEqual({ meldList: [1, ['a', 'b', 'id'], 3] });
+  expect(result).toEqual({
+    byId: { meldId: [undefined, 'deco name', undefined] }
+  });
 });
 
 it('SET_COUNTER_STATE', () => {

@@ -10,13 +10,13 @@ export const toggleMode = () => ({ type: TOGGLE_MODE });
 export const ADD_MELD = 'ADD_MELD';
 export const addMeld = () => ({ type: ADD_MELD });
 
-export const DELETE_MELD = 'DELETE_MELD';
-export const deleteMeld = () => ({ type: DELETE_MELD });
+export const DELETE_LAST_MELD = 'DELETE_LAST_MELD';
+export const deleteLastMeld = () => ({ type: DELETE_LAST_MELD });
 
 export const SET_DECO = 'SET_DECO';
-export const setDeco = (meldIndex, decoIndex, decoId) => ({
+export const setDeco = (id, index, deco) => ({
   type: SET_DECO,
-  data: { meldIndex, decoIndex, decoId }
+  data: { id, index, value: deco }
 });
 
 export const SET_COUNTER_STATE = 'SET_COUNTER_STATE';
