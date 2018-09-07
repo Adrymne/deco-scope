@@ -1,6 +1,5 @@
 import subject from './melds';
 import * as actions from 'store/actions';
-import { QuestCounter } from 'types';
 
 describe('DO_MELD', () => {
   it('empty meld list', () => {
@@ -23,42 +22,38 @@ describe('DO_MELD', () => {
 });
 
 describe('DO_QUEST', () => {
-  const ONE = QuestCounter.type.One;
-  const TWO = QuestCounter.type.Two;
-  const THREE = QuestCounter.type.Three;
-
   describe('counterState', () => {
     it('state 1', () => {
-      const state = { counterState: ONE };
+      const state = { counterState: 0 };
       const action = actions.doQuest();
 
       const result = subject(state, action);
 
-      expect(result.counterState).toBe(TWO);
+      expect(result.counterState).toBe(1);
     });
 
     it('state 2', () => {
-      const state = { counterState: TWO };
+      const state = { counterState: 1 };
       const action = actions.doQuest();
 
       const result = subject(state, action);
 
-      expect(result.counterState).toBe(THREE);
+      expect(result.counterState).toBe(2);
     });
 
     it('state 3', () => {
-      const state = { counterState: THREE };
+      const state = { counterState: 2 };
       const action = actions.doQuest();
 
       const result = subject(state, action);
 
-      expect(result.counterState).toBe(ONE);
+      expect(result.counterState).toBe(0);
     });
   });
 
   describe('meldList', () => {
     it('empty meld list', () => {
-      const state = { meldList: [], counterState: ONE };
+      const state = { meldList: [], counterState: 0 };
       const action = actions.doQuest();
 
       const result = subject(state, action);
@@ -67,7 +62,7 @@ describe('DO_QUEST', () => {
     });
 
     it('state 1', () => {
-      const state = { meldList: [1, 2, 3], counterState: ONE };
+      const state = { meldList: [1, 2, 3], counterState: 0 };
       const action = actions.doQuest();
 
       const result = subject(state, action);
@@ -76,7 +71,7 @@ describe('DO_QUEST', () => {
     });
 
     it('state 2', () => {
-      const state = { meldList: [1, 2, 3], counterState: TWO };
+      const state = { meldList: [1, 2, 3], counterState: 1 };
       const action = actions.doQuest();
 
       const result = subject(state, action);
@@ -85,7 +80,7 @@ describe('DO_QUEST', () => {
     });
 
     it('state 3', () => {
-      const state = { meldList: [1, 2, 3], counterState: THREE };
+      const state = { meldList: [1, 2, 3], counterState: 2 };
       const action = actions.doQuest();
 
       const result = subject(state, action);

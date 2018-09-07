@@ -1,13 +1,15 @@
 import * as R from 'ramda';
 import * as actions from 'store/actions';
-import { QuestCounter } from 'types';
 
 const DEFAULT = {
   // quests advance the meld list in a 1-1-2 pattern
-  counterState: QuestCounter.init(),
+  counterState: 0,
   meldList: []
 };
 const EMPTY_MELD = [undefined, undefined, undefined];
+
+const advanceCounter = state => (state === 2 ? 0 : state + 1);
+const getMeldAdvance = ({ counterState }) => (counterState === 2 ? 2 : 1);
 
 const updateDeco = ({ decoIndex, decoId }) => R.update(decoIndex, decoId);
 
@@ -18,9 +20,8 @@ export default (state = DEFAULT, action) => {
     case actions.DO_QUEST:
       return R.evolve(
         {
-          counterState: QuestCounter.advance,
-          meldList: meldList =>
-            R.drop(QuestCounter.getMeldAdvance(state.counterState), meldList)
+          counterState: advanceCounter,
+          meldList: meldList => R.drop(getMeldAdvance(state), meldList)
         },
         state
       );

@@ -1,20 +1,22 @@
 import React from 'react';
 import { Button } from 'reactstrap';
 import { connect } from 'react-redux';
-import { QuestCounter as Counter } from 'types';
 import * as selectors from 'store/selectors';
 import * as actions from 'store/actions';
 import './QuestCounter.css';
 
+const COUNTER_STATES = [1, 1, 2];
+
 const QuestCounter = ({ counterState, setCounterState }) => (
   <div className="snipe-controls__counter">
-    {Counter.getCounterSteps(counterState).map(({ display, value }) => (
+    {COUNTER_STATES.map((display, value) => (
       <Button
         className="snipe-controls__step"
         outline
         color="secondary"
         onClick={() => setCounterState(value)}
-        key={Counter.stringify(value)}
+        key={value}
+        active={counterState === value}
       >
         {display}
       </Button>
