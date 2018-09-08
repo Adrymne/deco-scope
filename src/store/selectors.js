@@ -29,6 +29,9 @@ export const isDecoPickerOpen = state => !!state.ui.decoPicker;
 export const decoPickerTarget = state => state.ui.decoPicker;
 
 export const melds = state =>
-  R.map(id => ({ id, decos: state.melds.byId[id] }), state.melds.list);
+  R.map(
+    id => ({ id, decos: state.melds.present.byId[id] }),
+    state.melds.present.list
+  );
 
-export const counterState = state => state.melds.counterState;
+export const counterState = state => state.melds.present.counterState;

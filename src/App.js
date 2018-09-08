@@ -7,6 +7,7 @@ import * as selectors from 'store/selectors';
 
 import './App.css';
 
+import Undo from './app/Undo';
 import ModeToggle from './app/ModeToggle';
 import Melds from './app/Melds';
 import QuestCounter from './app/QuestCounter';
@@ -29,6 +30,7 @@ const App = ({ uiMode, melds }) => (
   <Container fluid className="app">
     <DecoPicker />
     <div className="mode-toggle">
+      <Undo />
       <ModeToggle />
     </div>
     <div className="quest-counter">
