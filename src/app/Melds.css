@@ -3,7 +3,7 @@
 }
 
 .melds__table td {
-  width: 33%;
   vertical-align: middle;
   text-align: center;
+  padding: 0;
 }

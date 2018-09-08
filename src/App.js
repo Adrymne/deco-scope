@@ -12,6 +12,7 @@ import Melds from './app/Melds';
 import QuestCounter from './app/QuestCounter';
 import SnipeControls from './app/SnipeControls';
 import RecordControls from './app/RecordControls';
+import DecoPicker from './app/DecoPicker';
 
 const modeControls = uiMode => {
   switch (uiMode) {
@@ -26,6 +27,7 @@ const modeControls = uiMode => {
 
 const App = ({ uiMode, melds }) => (
   <Container fluid className="app">
+    <DecoPicker />
     <div className="mode-toggle">
       <ModeToggle />
     </div>
