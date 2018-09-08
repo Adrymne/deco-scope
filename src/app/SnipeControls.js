@@ -1,24 +1,24 @@
 import React from 'react';
 import { Row, Col, Button } from 'reactstrap';
+import { connect } from 'react-redux';
+import * as actions from 'store/actions';
 
-import QuestCounter from './snipeControls/QuestCounter';
-
-const SnipeControls = () => (
-  <React.Fragment>
-    <QuestCounter />
-    <Row>
-      <Col xs="6">
-        <Button block color="success">
-          Meld
-        </Button>
-      </Col>
-      <Col xs="6">
-        <Button block color="warning">
-          Quest
-        </Button>
-      </Col>
-    </Row>
-  </React.Fragment>
+const SnipeControls = ({ doMeld, doQuest }) => (
+  <Row>
+    <Col xs="6">
+      <Button block color="success" onClick={doMeld}>
+        Meld
+      </Button>
+    </Col>
+    <Col xs="6">
+      <Button block color="warning" onClick={doQuest}>
+        Quest
+      </Button>
+    </Col>
+  </Row>
 );
 
-export default SnipeControls;
+export default connect(
+  undefined,
+  actions
+)(SnipeControls);
