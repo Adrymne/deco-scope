@@ -26,6 +26,7 @@ type State = {
 
 export const uiMode = state => state.ui.mode;
 export const isDecoPickerOpen = state => !!state.ui.decoPicker;
+export const decoPickerTarget = state => state.ui.decoPicker;
 
 export const melds = state =>
   R.map(id => ({ id, decos: state.melds.byId[id] }), state.melds.list);

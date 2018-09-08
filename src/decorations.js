@@ -1,4 +1,6 @@
-export default {
+import * as R from 'ramda';
+
+const DECORATIONS = {
   Antidote: { skill: 'Poison Resistance', size: 1, rarity: 5 },
   Geology: { skill: 'Geologist', size: 1, rarity: 5 },
   'Heavy Artillery': { skill: 'Heavy Artillery', size: 1, rarity: 5 },
@@ -95,3 +97,10 @@ export default {
   Draw: { skill: 'Critical Draw', size: 2, rarity: 8 },
   Pierce: { skill: 'Piercing Shots', size: 3, rarity: 8 }
 };
+
+export const DECORATION_LIST = R.map(
+  name => ({ name, ...DECORATIONS[name] }),
+  R.keys(DECORATIONS)
+);
+
+export default DECORATIONS;

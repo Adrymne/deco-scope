@@ -15,6 +15,8 @@ export default (state = DEFAULT, action) => {
       return R.assoc('decoPicker', action.data, state);
     case actions.CLOSE_DECO_PICKER:
       return R.assoc('decoPicker', undefined, state);
+    case actions.SET_DECO:
+      return R.assoc('decoPicker', undefined, state);
     default:
       return state;
   }
