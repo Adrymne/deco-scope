@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import { SNIPE_MODE, RECORD_MODE } from 'types';
 import * as selectors from 'store/selectors';
 
-import Undo from './app/Undo';
+import MenuBar from './app/MenuBar';
 import ModeTabs from './app/ModeTabs';
 import Melds from './app/Melds';
 import QuestCounter from './app/QuestCounter';
@@ -29,7 +29,7 @@ const App = ({ uiMode, melds }) => (
   <div>
     <DecoPicker />
     <AppBar position="static">
-      <Undo />
+      <MenuBar />
       <ModeTabs />
     </AppBar>
     <Typography component="div" style={{ padding: 5 }}>
