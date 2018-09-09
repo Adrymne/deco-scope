@@ -3,8 +3,9 @@ import { Button } from 'reactstrap';
 import { connect } from 'react-redux';
 import { RECORD_MODE } from 'types';
 import * as selectors from 'store/selectors';
+import DECORATIONS from 'decorations';
 
-const EditableDeco = ({ deco, onClick }) => (
+const EditableDeco = ({ decoName, onClick }) => (
   <Button
     onClick={onClick}
     block
@@ -12,23 +13,35 @@ const EditableDeco = ({ deco, onClick }) => (
     color="secondary"
     style={{ borderRadius: 0 }}
   >
-    {deco}
+    {decoName}
     &nbsp;
   </Button>
 );
 
-const ViewDeco = ({ deco }) => (
-  <div>
-    {deco}
+const rarityStyle = name => {
+  const deco = DECORATIONS[name];
+  switch (deco && deco.rarity) {
+    case 7:
+      return { color: 'purple', fontWeight: 'bold' };
+    case 8:
+      return { color: 'orange', fontWeight: 'bold' };
+    default:
+      return { color: 'black', fontWeight: 'normal' };
+  }
+};
+
+const ViewDeco = ({ decoName }) => (
+  <div style={rarityStyle(decoName)}>
+    {decoName}
     &nbsp;
   </div>
 );
 
-const Deco = ({ deco, edit, isRecordMode }) =>
+const Deco = ({ decoName, edit, isRecordMode }) =>
   isRecordMode ? (
-    <EditableDeco deco={deco} onClick={edit} />
+    <EditableDeco decoName={decoName} onClick={edit} />
   ) : (
-    <ViewDeco deco={deco} />
+    <ViewDeco decoName={decoName} />
   );
 
 const mapStateToProps = state => ({

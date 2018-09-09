@@ -12,9 +12,12 @@ const Melds = ({ melds, openDecoPicker }) => (
     <tbody>
       {melds.map(meld => (
         <tr key={meld.id}>
-          {meld.decos.map((deco, index) => (
+          {meld.decos.map((decoName, index) => (
             <td key={index}>
-              <Deco deco={deco} edit={() => openDecoPicker(meld.id, index)} />
+              <Deco
+                decoName={decoName}
+                edit={() => openDecoPicker(meld.id, index)}
+              />
             </td>
           ))}
         </tr>
