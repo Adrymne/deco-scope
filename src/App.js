@@ -1,14 +1,13 @@
 import React from 'react';
-import { Container } from 'reactstrap';
+import AppBar from '@material-ui/core/AppBar';
+import Typography from '@material-ui/core/Typography';
 import { connect } from 'react-redux';
 
 import { SNIPE_MODE, RECORD_MODE } from 'types';
 import * as selectors from 'store/selectors';
 
-import './App.css';
-
 import Undo from './app/Undo';
-import ModeToggle from './app/ModeToggle';
+import ModeTabs from './app/ModeTabs';
 import Melds from './app/Melds';
 import QuestCounter from './app/QuestCounter';
 import SnipeControls from './app/SnipeControls';
@@ -27,20 +26,18 @@ const modeControls = uiMode => {
 };
 
 const App = ({ uiMode, melds }) => (
-  <Container fluid className="app">
+  <div>
     <DecoPicker />
-    <div className="mode-toggle">
+    <AppBar position="static">
       <Undo />
-      <ModeToggle />
-    </div>
-    <div className="quest-counter">
+      <ModeTabs />
+    </AppBar>
+    <Typography component="div" style={{ padding: 5 }}>
       <QuestCounter />
-    </div>
-    <div className="melds">
       <Melds />
-    </div>
-    <div className="controls">{modeControls(uiMode)}</div>
-  </Container>
+      {modeControls(uiMode)}
+    </Typography>
+  </div>
 );
 
 const mapStateToProps = state => ({
