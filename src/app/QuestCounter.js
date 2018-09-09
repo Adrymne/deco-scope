@@ -3,29 +3,28 @@ import { Button } from 'reactstrap';
 import { connect } from 'react-redux';
 import * as selectors from 'store/selectors';
 import * as actions from 'store/actions';
+import { questCounter } from 'types';
 import './QuestCounter.css';
 
-const COUNTER_STATES = [1, 1, 2];
-
-const QuestCounter = ({ counterState, setCounterState }) => (
+const QuestCounter = ({ activeState, setCounterState }) => (
   <div className="snipe-controls__counter">
-    {COUNTER_STATES.map((display, value) => (
+    {questCounter.ALL_STATES.map(counterState => (
       <Button
         className="snipe-controls__step"
         outline
         color="secondary"
-        onClick={() => setCounterState(value)}
-        key={value}
-        active={counterState === value}
+        onClick={() => setCounterState(counterState)}
+        key={counterState}
+        active={counterState === activeState}
       >
-        {display}
+        {questCounter.getMeldAdvance(counterState)}
       </Button>
     ))}
   </div>
 );
 
 const mapStateToProps = state => ({
-  counterState: selectors.counterState(state)
+  activeState: selectors.activeCounterState(state)
 });
 
 export default connect(

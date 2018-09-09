@@ -1,17 +1,15 @@
 import * as R from 'ramda';
 import uuidv4 from 'uuid/v4';
 import * as actions from 'store/actions';
+import { questCounter } from 'types';
 
 const DEFAULT = {
   // quests advance the meld list in a 1-1-2 pattern
-  counterState: 0,
+  counterState: questCounter.init(),
   byId: {},
   list: []
 };
 const EMPTY_MELD = [undefined, undefined, undefined];
-
-const advanceCounter = state => (state === 2 ? 0 : state + 1);
-const getMeldAdvance = ({ counterState }) => (counterState === 2 ? 2 : 1);
 
 export default (state = DEFAULT, action) => {
   switch (action.type) {
@@ -24,10 +22,10 @@ export default (state = DEFAULT, action) => {
         state
       );
     case actions.DO_QUEST:
-      const advanceCount = getMeldAdvance(state);
+      const advanceCount = questCounter.getMeldAdvance(state.counterState);
       return R.evolve(
         {
-          counterState: advanceCounter,
+          counterState: questCounter.next,
           byId: R.omit(R.take(advanceCount, state.list)),
           list: R.drop(advanceCount)
         },

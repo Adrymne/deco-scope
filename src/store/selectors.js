@@ -1,4 +1,5 @@
 import * as R from 'ramda';
+import { questCounter } from 'types';
 
 /*
 type Id = String
@@ -28,14 +29,12 @@ export const uiMode = state => state.ui.mode;
 export const isDecoPickerOpen = state => !!state.ui.decoPicker;
 export const decoPickerTarget = state => state.ui.decoPicker;
 
-// TODO: centralize counterState logic somewhere (types.js?)
-export const questAdvanceCount = state =>
-  state.melds.present.counterState === 2 ? 2 : 1;
+export const currentQuestAdvance = state =>
+  questCounter.getMeldAdvance(state.melds.present.counterState);
+export const activeCounterState = state => state.melds.present.counterState;
 
 export const melds = state =>
   R.map(
     id => ({ id, decos: state.melds.present.byId[id] }),
     state.melds.present.list
   );
-
-export const counterState = state => state.melds.present.counterState;
