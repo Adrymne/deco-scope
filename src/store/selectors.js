@@ -28,6 +28,10 @@ export const uiMode = state => state.ui.mode;
 export const isDecoPickerOpen = state => !!state.ui.decoPicker;
 export const decoPickerTarget = state => state.ui.decoPicker;
 
+// TODO: centralize counterState logic somewhere (types.js?)
+export const questAdvanceCount = state =>
+  state.melds.present.counterState === 2 ? 2 : 1;
+
 export const melds = state =>
   R.map(
     id => ({ id, decos: state.melds.present.byId[id] }),

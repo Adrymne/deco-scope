@@ -7,11 +7,14 @@ import * as actions from 'store/actions';
 import Deco from './melds/Deco';
 import './Melds.css';
 
-const Melds = ({ melds, openDecoPicker }) => (
+const Melds = ({ melds, openDecoPicker, questAdvanceCount }) => (
   <Table bordered className="melds__table">
     <tbody>
-      {melds.map(meld => (
-        <tr key={meld.id}>
+      {melds.map((meld, index) => (
+        <tr
+          key={meld.id}
+          className={index < questAdvanceCount ? 'table-warning' : ''}
+        >
           {meld.decos.map((decoName, index) => (
             <td key={index}>
               <Deco
@@ -27,6 +30,7 @@ const Melds = ({ melds, openDecoPicker }) => (
 );
 
 const mapStateToProps = state => ({
+  questAdvanceCount: selectors.questAdvanceCount(state),
   melds: selectors.melds(state)
 });
 
