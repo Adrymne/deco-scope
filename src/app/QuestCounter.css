@@ -1,0 +1,12 @@
+.snipe-controls__counter {
+  display: flex;
+  justify-content: space-around;
+  padding: 0px 0px 5px 0;
+}
+
+.snipe-controls__step {
+  width: 100%;
+  text-align: center;
+  margin: 0px 2.5px;
+  border-radius: 0;
+}

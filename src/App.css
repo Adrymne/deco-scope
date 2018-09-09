@@ -1,0 +1,25 @@
+.app {
+  margin: 2.5px 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.mode-toggle {
+  display: flex;
+}
+
+.quest-counter {
+  margin: 2.5px 0;
+}
+
+.melds {
+  height: 100%;
+  padding: 2.5px 0;
+  overflow: auto;
+}
+
+.controls {
+  padding: 2.5px 0;
+}
