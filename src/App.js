@@ -1,29 +1,22 @@
 import React from 'react';
 import AppBar from '@material-ui/core/AppBar';
-import Typography from '@material-ui/core/Typography';
 
 import MenuBar from './app/MenuBar';
 import ModeTabs from './app/ModeTabs';
-import Melds from './app/Melds';
-import QuestCounter from './app/QuestCounter';
-import Controls from './app/Controls';
+import SnipeMode from './app/SnipeMode';
 import DecoPicker from './app/DecoPicker';
 
 import './App.css';
 
 const App = ({ uiMode, melds }) => (
-  <div>
+  <React.Fragment>
     <DecoPicker />
     <AppBar position="static">
       <MenuBar />
       <ModeTabs />
     </AppBar>
-    <Typography component="div" style={{ padding: 5 }}>
-      <QuestCounter />
-      <Melds />
-      <Controls />
-    </Typography>
-  </div>
+    <SnipeMode />
+  </React.Fragment>
 );
 
 export default App;
