@@ -1,21 +1,23 @@
 import React from 'react';
-import { Row, Col, Button } from 'reactstrap';
+import Grid from '@material-ui/core/Grid';
+import Button from '@material-ui/core/Button';
 import { connect } from 'react-redux';
 import * as actions from 'store/actions';
 
 const SnipeControls = ({ doMeld, doQuest }) => (
-  <Row>
-    <Col xs="6">
-      <Button block color="success" onClick={doMeld}>
-        Meld
-      </Button>
-    </Col>
-    <Col xs="6">
-      <Button block color="warning" onClick={doQuest}>
-        Quest
-      </Button>
-    </Col>
-  </Row>
+  <Grid container justify="space-around">
+    <Button variant="contained" color="primary" size="large" onClick={doMeld}>
+      Meld
+    </Button>
+    <Button
+      variant="contained"
+      color="secondary"
+      size="large"
+      onClick={doQuest}
+    >
+      Quest
+    </Button>
+  </Grid>
 );
 
 export default connect(

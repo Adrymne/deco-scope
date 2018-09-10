@@ -9,6 +9,8 @@ import QuestCounter from './app/QuestCounter';
 import Controls from './app/Controls';
 import DecoPicker from './app/DecoPicker';
 
+import './App.css';
+
 const App = ({ uiMode, melds }) => (
   <div>
     <DecoPicker />
