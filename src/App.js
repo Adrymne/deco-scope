@@ -5,21 +5,27 @@ import Grid from '@material-ui/core/Grid';
 import MenuBar from './app/MenuBar';
 import ModeTabs from './app/ModeTabs';
 import SnipeMode from './app/SnipeMode';
+import RecordMode from './app/RecordMode';
 import DecoPicker from './app/DecoPicker';
+
+// TODO: refactor out
+import { connect } from 'react-redux';
+import { SNIPE_MODE } from 'types';
+import * as selectors from 'store/selectors';
 
 import './App.css';
 
-const App = ({ uiMode, melds }) => (
+const App = ({ uiMode }) => (
   <React.Fragment>
     <DecoPicker />
-    <Grid container direction="column" style={{ height: '100%' }}>
+    <Grid container direction="column" wrap="nowrap" style={{ height: '100%' }}>
       <AppBar position="static">
         <MenuBar />
         <ModeTabs />
       </AppBar>
-      <SnipeMode />
+      {uiMode === SNIPE_MODE ? <SnipeMode /> : <RecordMode />}
     </Grid>
   </React.Fragment>
 );
 
-export default App;
+export default connect(state => ({ uiMode: selectors.uiMode(state) }))(App);
