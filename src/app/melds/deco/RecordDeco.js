@@ -25,9 +25,9 @@ const RecordDeco = ({ name, onClick, classes }) => (
 );
 
 const mergeProps = (stateProps, dispatchProps, ownProps) => ({
-  name: ownProps.decoName,
+  name: ownProps.deco.name,
   onClick: () =>
-    dispatchProps.openDecoPicker(ownProps.meldId, ownProps.decoIndex)
+    dispatchProps.openDecoPicker(ownProps.meld.id, ownProps.deco.index)
 });
 export default connect(
   undefined,

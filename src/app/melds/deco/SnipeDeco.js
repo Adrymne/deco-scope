@@ -20,8 +20,8 @@ const mapStateToProps = state => ({
   questAdvance: selectors.currentQuestAdvance(state)
 });
 const mergeProps = (stateProps, dispatchProps, ownProps) => ({
-  name: ownProps.decoName,
-  isAtRisk: ownProps.meldIndex < stateProps.questAdvance
+  name: ownProps.deco.name,
+  isAtRisk: ownProps.meld.index < stateProps.questAdvance
 });
 export default connect(
   mapStateToProps,

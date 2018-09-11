@@ -5,11 +5,11 @@ import ModeSwitch from 'components/ModeSwitch';
 import SnipeDeco from './deco/SnipeDeco';
 import RecordDeco from './deco/RecordDeco';
 
-const modeRender = deco => ({
-  [SNIPE_MODE]: () => <SnipeDeco {...deco} />,
-  [RECORD_MODE]: () => <RecordDeco {...deco} />
+const modeRender = props => ({
+  [SNIPE_MODE]: () => <SnipeDeco {...props} />,
+  [RECORD_MODE]: () => <RecordDeco {...props} />
 });
 
-const Deco = ({ deco }) => <ModeSwitch modeRender={modeRender(deco)} />;
+const Deco = props => <ModeSwitch modeRender={modeRender(props)} />;
 
 export default Deco;
