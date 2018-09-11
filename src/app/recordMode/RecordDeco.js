@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import Button from '@material-ui/core/Button';
 import { withStyles } from '@material-ui/core/styles';
 
+import Deco from 'components/Deco';
 import * as actions from 'store/actions';
 
 const styles = {
@@ -18,7 +19,7 @@ const RecordDeco = ({ name, onClick, classes }) => (
       fullWidth
       className={classes.button}
     >
-      {name || ''}
+      <Deco name={name} />
     </Button>
   </div>
 );
