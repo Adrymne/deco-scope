@@ -13,7 +13,7 @@ const styles = {
 
 const decoRarity = name => R.prop('rarity', DECORATIONS[name]);
 
-const Deco = ({ name, classes }) => (
+const DecoName = ({ name, classes }) => (
   <Typography
     align="center"
     className={classNames({
@@ -25,4 +25,4 @@ const Deco = ({ name, classes }) => (
   </Typography>
 );
 
-export default withStyles(styles)(Deco);
+export default withStyles(styles)(DecoName);

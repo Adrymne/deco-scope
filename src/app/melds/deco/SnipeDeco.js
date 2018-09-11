@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
 
-import Deco from 'components/Deco';
+import DecoName from 'components/DecoName';
 import * as selectors from 'store/selectors';
 
 const styles = theme => ({
@@ -12,7 +12,7 @@ const styles = theme => ({
 
 const SnipeDeco = ({ name, isAtRisk, classes }) => (
   <div className={classNames({ [classes.atRisk]: isAtRisk })}>
-    <Deco name={name} />
+    <DecoName name={name} />
   </div>
 );
 
