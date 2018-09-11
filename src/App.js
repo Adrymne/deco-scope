@@ -5,6 +5,7 @@ import Grid from '@material-ui/core/Grid';
 import DecoPicker from './app/DecoPicker';
 import MenuBar from './app/MenuBar';
 import ModeTabs from './app/ModeTabs';
+import QuestCounter from './app/QuestCounter';
 import Melds from './app/Melds';
 import Controls from './app/Controls';
 
@@ -25,6 +26,9 @@ const App = () => (
           <MenuBar />
           <ModeTabs />
         </AppBar>
+      </Grid>
+      <Grid item>
+        <QuestCounter />
       </Grid>
       <Grid item style={{ flexGrow: 1 }}>
         <Melds />
