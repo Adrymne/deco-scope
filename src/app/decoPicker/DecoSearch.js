@@ -1,14 +1,16 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import Downshift from 'downshift';
 import matchSorter from 'match-sorter';
-import { Input } from 'reactstrap';
-import { connect } from 'react-redux';
+import Paper from '@material-ui/core/Paper';
+
+import { DECORATION_LIST } from 'decorations';
+import SearchInput from './decoSearch/SearchInput';
+import Suggestion from './decoSearch/Suggestion';
 import * as selectors from 'store/selectors';
 import * as actions from 'store/actions';
-import { DECORATION_LIST } from 'decorations';
 
-const stringifyDeco = deco =>
-  deco ? `${deco.name} ${deco.size} (${deco.skill})` : '';
+const stringifyDeco = deco => (deco ? `${deco.name} ${deco.size}` : '');
 
 const getMatches = inputValue =>
   matchSorter(DECORATION_LIST, inputValue, {
@@ -21,26 +23,34 @@ const DecoSearch = ({ setDeco, target }) => (
     onChange={deco => setDeco(target.id, target.index, deco.name)}
     itemToString={stringifyDeco}
   >
-    {({ getInputProps, getMenuProps, getItemProps, isOpen, inputValue }) => (
+    {({
+      getInputProps,
+      getMenuProps,
+      getItemProps,
+      isOpen,
+      inputValue,
+      highlightedIndex
+    }) => (
       <div>
-        <Input {...getInputProps()} />
-        <ul className="list-group" {...getMenuProps()}>
-          {isOpen
-            ? getMatches(inputValue).map((deco, index) => (
-                <button
-                  type="button"
-                  className="list-group-item list-group-item-action"
-                  {...getItemProps({
-                    key: deco.name,
-                    index,
-                    item: deco
-                  })}
-                >
-                  {stringifyDeco(deco)}
-                </button>
-              ))
-            : null}
-        </ul>
+        <SearchInput
+          inputProps={getInputProps({
+            placeholder: 'Enter decoration name...'
+          })}
+        />
+        <div {...getMenuProps()}>
+          {isOpen ? (
+            <Paper square>
+              {getMatches(inputValue).map((deco, index) => (
+                <Suggestion
+                  label={stringifyDeco(deco)}
+                  key={deco.name}
+                  itemProps={getItemProps({ index, item: deco })}
+                  isSelected={highlightedIndex === index}
+                />
+              ))}
+            </Paper>
+          ) : null}
+        </div>
       </div>
     )}
   </Downshift>
