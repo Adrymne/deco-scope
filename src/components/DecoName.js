@@ -21,7 +21,7 @@ const DecoName = ({ name, classes }) => (
       [classes.r8]: decoRarity(name) === 8
     })}
   >
-    {name || ''}
+    {name || '?'}
   </Typography>
 );
 
