@@ -16,6 +16,7 @@ const decoRarity = name => R.prop('rarity', DECORATIONS[name]);
 const DecoName = ({ name, classes }) => (
   <Typography
     align="center"
+    noWrap
     className={classNames({
       [classes.r7]: decoRarity(name) === 7,
       [classes.r8]: decoRarity(name) === 8

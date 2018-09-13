@@ -10,7 +10,7 @@ import * as actions from 'store/actions';
 
 const styles = {
   container: { padding: '2px' },
-  button: { borderRadius: 0 }
+  button: { borderRadius: 0, padding: 4 }
 };
 
 const RecordDeco = ({ name, onClick, classes, shouldScroll }) => (
