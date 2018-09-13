@@ -18,7 +18,7 @@ const App = () => (
       container
       direction="column"
       wrap="nowrap"
-      style={{ height: '100%' }}
+      style={{ height: '100%', maxHeight: '100%' }}
       spacing={8}
     >
       <Grid item>
@@ -30,7 +30,7 @@ const App = () => (
       <Grid item>
         <QuestCounter />
       </Grid>
-      <Grid item style={{ flexGrow: 1 }}>
+      <Grid item style={{ flex: '1 1', overflow: 'scroll' }}>
         <Melds />
       </Grid>
       <Grid item>
