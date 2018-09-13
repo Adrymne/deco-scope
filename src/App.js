@@ -1,50 +1,43 @@
 import React from 'react';
-import { Container } from 'reactstrap';
-import { connect } from 'react-redux';
+import AppBar from '@material-ui/core/AppBar';
+import Grid from '@material-ui/core/Grid';
 
-import { SNIPE_MODE, RECORD_MODE } from 'types';
-import * as selectors from 'store/selectors';
+import DecoPicker from './app/DecoPicker';
+import MenuBar from './app/MenuBar';
+import ModeTabs from './app/ModeTabs';
+import QuestCounter from './app/QuestCounter';
+import Melds from './app/Melds';
+import Controls from './app/Controls';
 
 import './App.css';
 
-import Undo from './app/Undo';
-import ModeToggle from './app/ModeToggle';
-import Melds from './app/Melds';
-import QuestCounter from './app/QuestCounter';
-import SnipeControls from './app/SnipeControls';
-import RecordControls from './app/RecordControls';
-import DecoPicker from './app/DecoPicker';
-
-const modeControls = uiMode => {
-  switch (uiMode) {
-    case SNIPE_MODE:
-      return <SnipeControls />;
-    case RECORD_MODE:
-      return <RecordControls />;
-    default:
-      return null;
-  }
-};
-
-const App = ({ uiMode, melds }) => (
-  <Container fluid className="app">
+const App = () => (
+  <React.Fragment>
     <DecoPicker />
-    <div className="mode-toggle">
-      <Undo />
-      <ModeToggle />
-    </div>
-    <div className="quest-counter">
-      <QuestCounter />
-    </div>
-    <div className="melds">
-      <Melds />
-    </div>
-    <div className="controls">{modeControls(uiMode)}</div>
-  </Container>
+    <Grid
+      container
+      direction="column"
+      wrap="nowrap"
+      style={{ height: '100%', maxHeight: '100%' }}
+      spacing={8}
+    >
+      <Grid item>
+        <AppBar position="static">
+          <MenuBar />
+          <ModeTabs />
+        </AppBar>
+      </Grid>
+      <Grid item>
+        <QuestCounter />
+      </Grid>
+      <Grid item style={{ flex: '1 1', overflow: 'scroll' }}>
+        <Melds />
+      </Grid>
+      <Grid item>
+        <Controls />
+      </Grid>
+    </Grid>
+  </React.Fragment>
 );
 
-const mapStateToProps = state => ({
-  uiMode: selectors.uiMode(state)
-});
-
-export default connect(mapStateToProps)(App);
+export default App;

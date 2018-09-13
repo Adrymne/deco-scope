@@ -33,8 +33,28 @@ export const currentQuestAdvance = state =>
   questCounter.getMeldAdvance(state.melds.present.counterState);
 export const activeCounterState = state => state.melds.present.counterState;
 
-export const melds = state =>
-  R.map(
-    id => ({ id, decos: state.melds.present.byId[id] }),
+// DecoInfo :: { name :: String, index :: Int }
+// MeldInfo :: { id :: String, index :: Int }
+const mapIndexed = R.addIndex(R.map);
+
+// getMeld :: Dict Id [Deco] -> (String, Int) -> { meld :: MeldInfo, decoNames :: [String] }
+const getMeld = meldDecos => (id, index) => ({
+  meld: { id, index },
+  decoNames: R.propOr([], id, meldDecos)
+});
+// extractDecos :: { meld :: MeldInfo, decoNames :: [String] } -> [{ deco :: DecoInfo, meld :: MeldInfo }]
+const extractDecos = ({ meld, decoNames }) =>
+  mapIndexed((name, index) => ({ meld, deco: { name, index } }), decoNames);
+// decos :: State -> [{ deco :: DecoInfo, meld :: MeldInfo }]
+export const decos = state =>
+  R.transduce(
+    mapIndexed(
+      R.pipe(
+        getMeld(state.melds.present.byId),
+        extractDecos
+      )
+    ),
+    R.concat,
+    [],
     state.melds.present.list
   );

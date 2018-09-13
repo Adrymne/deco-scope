@@ -13,8 +13,8 @@ export const doMeld = () => ({ type: DO_MELD });
 export const DO_QUEST = 'DO_QUEST';
 export const doQuest = () => ({ type: DO_QUEST });
 
-export const TOGGLE_MODE = 'TOGGLE_MODE';
-export const toggleMode = () => ({ type: TOGGLE_MODE });
+export const SET_UI_MODE = 'SET_UI_MODE';
+export const setUiMode = mode => ({ type: SET_UI_MODE, data: mode });
 
 export const ADD_MELD = 'ADD_MELD';
 export const addMeld = () => ({ type: ADD_MELD });
