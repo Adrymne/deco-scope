@@ -33,6 +33,8 @@ export const currentQuestAdvance = state =>
   questCounter.getMeldAdvance(state.melds.present.counterState);
 export const activeCounterState = state => state.melds.present.counterState;
 
+export const meldCount = state => state.melds.present.list.length;
+
 // DecoInfo :: { name :: String, index :: Int }
 // MeldInfo :: { id :: String, index :: Int }
 const mapIndexed = R.addIndex(R.map);
