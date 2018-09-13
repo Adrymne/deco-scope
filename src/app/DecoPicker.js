@@ -1,17 +1,18 @@
 import React from 'react';
-import { Modal, ModalHeader, ModalBody } from 'reactstrap';
+import Dialog from '@material-ui/core/Dialog';
+import DialogContent from '@material-ui/core/DialogContent';
 import { connect } from 'react-redux';
+
+import DecoSearch from './decoPicker/DecoSearch';
 import * as selectors from 'store/selectors';
 import * as actions from 'store/actions';
-import DecoSearch from './decoPicker/DecoSearch';
 
 const DecoPicker = ({ isOpen, closeDecoPicker }) => (
-  <Modal isOpen={isOpen} toggle={closeDecoPicker}>
-    <ModalHeader toggle={closeDecoPicker}>Select Decoration</ModalHeader>
-    <ModalBody>
+  <Dialog open={isOpen} onClose={closeDecoPicker}>
+    <DialogContent>
       <DecoSearch />
-    </ModalBody>
-  </Modal>
+    </DialogContent>
+  </Dialog>
 );
 
 const mapStateToProps = state => ({

@@ -77,7 +77,7 @@ const DECORATIONS = {
   Sleep: { skill: 'Sleep Attack', size: 1, rarity: 7 },
   Ironwall: { skill: 'Guard', size: 1, rarity: 7 },
   Refresh: { skill: 'Stamina Surge', size: 2, rarity: 7 },
-  Blash: { skill: 'Blast Attack', size: 1, rarity: 7 },
+  Blast: { skill: 'Blast Attack', size: 1, rarity: 7 },
   Sleepcoat: { skill: 'Sleep Functionality', size: 3, rarity: 7 },
   Blastcoat: { skill: 'Blast Functionality', size: 3, rarity: 7 },
   Throttle: { skill: 'Latent Power', size: 2, rarity: 7 },

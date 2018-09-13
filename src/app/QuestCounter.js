@@ -1,33 +1,35 @@
 import React from 'react';
-import { Button } from 'reactstrap';
+import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
+import ToggleButton from '@material-ui/lab/ToggleButton';
 import { connect } from 'react-redux';
+
+import { questCounter, RECORD_MODE } from 'types';
 import * as selectors from 'store/selectors';
 import * as actions from 'store/actions';
-import './QuestCounter.css';
 
-const COUNTER_STATES = [1, 1, 2];
-
-const QuestCounter = ({ counterState, setCounterState }) => (
-  <div className="snipe-controls__counter">
-    {COUNTER_STATES.map((display, value) => (
-      <Button
-        className="snipe-controls__step"
-        outline
-        color="secondary"
-        onClick={() => setCounterState(value)}
-        key={value}
-        active={counterState === value}
+const QuestCounter = ({ activeState, setCounterState, isEditable }) => (
+  <ToggleButtonGroup
+    value={activeState}
+    exclusive
+    onChange={(e, state) => setCounterState(state)}
+  >
+    {questCounter.ALL_STATES.map(counterState => (
+      <ToggleButton
+        key={counterState}
+        value={counterState}
+        style={{ width: '33%' }}
+        disabled={!isEditable}
       >
-        {display}
-      </Button>
+        {questCounter.getMeldAdvance(counterState)}
+      </ToggleButton>
     ))}
-  </div>
+  </ToggleButtonGroup>
 );
 
 const mapStateToProps = state => ({
-  counterState: selectors.counterState(state)
+  activeState: selectors.activeCounterState(state),
+  isEditable: selectors.uiMode(state) === RECORD_MODE
 });
-
 export default connect(
   mapStateToProps,
   actions
