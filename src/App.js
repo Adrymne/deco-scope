@@ -30,7 +30,7 @@ const App = () => (
       <Grid item>
         <QuestCounter />
       </Grid>
-      <Grid item style={{ flex: '1 1', overflow: 'scroll' }}>
+      <Grid item style={{ flex: '1 1', overflow: 'auto' }}>
         <Melds />
       </Grid>
       <Grid item>
