@@ -2,7 +2,7 @@
 
 A helper webapp for deco sniping in Monster Hunter: World.
 
-Live [here].
+Live [here](http://adrymne.github.io/deco-scope).
 
 ## Deco-Sniping
 
